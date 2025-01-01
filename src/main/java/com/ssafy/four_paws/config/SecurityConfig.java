@@ -1,7 +1,7 @@
 package com.ssafy.four_paws.config;
 
 import com.ssafy.four_paws.security.JwtRequestFilter;
-import com.ssafy.four_paws.users.service.CustomUserDetailsService;
+import com.ssafy.four_paws.user.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,7 +1,7 @@
 package com.ssafy.four_paws.comments.entity;
 
-import com.ssafy.four_paws.posts.entity.Posts;
-import com.ssafy.four_paws.users.entity.Users;
+import com.ssafy.four_paws.post.entity.Post;
+import com.ssafy.four_paws.user.entity.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -35,10 +35,10 @@ public class Comments {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    private Users users;
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id", nullable = false)
-    private Posts posts;
+    private Post post;
 
 }

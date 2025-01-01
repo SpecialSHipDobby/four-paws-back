@@ -1,7 +1,7 @@
-package com.ssafy.four_paws.posts.entity;
+package com.ssafy.four_paws.post.entity;
 
 import com.ssafy.four_paws.care_zone.entity.CareZone;
-import com.ssafy.four_paws.users.entity.Users;
+import com.ssafy.four_paws.user.entity.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -17,11 +17,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "posts")
+@Table(name = "post")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Posts {
+public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,7 +40,7 @@ public class Posts {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private Users users;
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "care_zone_id")

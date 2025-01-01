@@ -1,6 +1,6 @@
-package com.ssafy.four_paws.post_photos.entity;
+package com.ssafy.four_paws.post_photo.entity;
 
-import com.ssafy.four_paws.posts.entity.Posts;
+import com.ssafy.four_paws.post.entity.Post;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PostPhotos {
+public class PostPhoto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -33,6 +33,6 @@ public class PostPhotos {
 
     @JoinColumn(name = "post_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
-    private Posts posts;
+    private Post post;
 
 }
