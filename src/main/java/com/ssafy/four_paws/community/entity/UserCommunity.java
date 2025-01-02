@@ -1,9 +1,13 @@
-package com.ssafy.four_paws.group.entity;
+package com.ssafy.four_paws.community.entity;
 
-import com.ssafy.four_paws.group.embeddable.UserGroupId;
+import com.ssafy.four_paws.community.embeddable.UserCommunityId;
 import com.ssafy.four_paws.user.entity.User;
+import com.ssafy.four_paws.user.enums.Role;
+import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -14,13 +18,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "user_group")
+@Table(name = "user_community")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class UserGroup {
+public class UserCommunity {
     @EmbeddedId
-    private UserGroupId id = new UserGroupId();
+    private UserCommunityId id = new UserCommunityId();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("userId")
@@ -29,7 +33,11 @@ public class UserGroup {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("groupId")
-    @JoinColumn(name = "group_id")
-    private Group group;
+    @MapsId("communityId")
+    @JoinColumn(name = "community_id")
+    private Community community;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
 }

@@ -4,7 +4,8 @@ USE animal_care_zone_db;
 
 -- 테이블 삭제 순서:
 -- 1. 종속 테이블 (자식 테이블) 먼저 삭제
-DROP TABLE IF EXISTS `group_post`;
+DROP TABLE IF EXISTS community_post;
+drop table if exists user_community;
 DROP TABLE IF EXISTS post_photo;
 DROP TABLE IF EXISTS care_zone_photo;
 DROP TABLE IF EXISTS comment;
@@ -16,7 +17,7 @@ DROP TABLE IF EXISTS post;
 DROP TABLE IF EXISTS care_zone;
 
 -- 4. 독립 테이블 삭제
-DROP TABLE IF EXISTS `group`;
+DROP TABLE IF EXISTS community;
 
 DROP TABLE IF EXISTS user;
 
@@ -97,7 +98,7 @@ CREATE TABLE care_zone_photo (
                                  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                                  FOREIGN KEY (care_zone_id) REFERENCES care_zone(id) ON DELETE CASCADE
 );
-CREATE TABLE `group` (
+CREATE TABLE community (
                          `id`	BIGINT	NOT NULL PRIMARY KEY ,
                          `title`	VARCHAR(100)	NULL,
                          `description`	VARCHAR(500)	NULL,
@@ -105,19 +106,19 @@ CREATE TABLE `group` (
                          `updated_at`	TIMESTAMP	NULL
 );
 
-CREATE TABLE `group_post` (
-                              `group_id`	BIGINT	NOT NULL,
+CREATE TABLE `community_post` (
+                              `community_id`	BIGINT	NOT NULL,
                               `post_id`	BIGINT	NOT NULL,
                               `created_at`	TIMESTAMP	NULL,
                               `updated_at`	TIMESTAMP	NULL,
-    FOREIGN KEY (group_id) REFERENCES `group`(id),
+    FOREIGN KEY (community_id) REFERENCES community(id),
     FOREIGN KEY (post_id) REFERENCES post(id)
 );
 
-CREATE TABLE `user_group` (
+CREATE TABLE `user_community` (
                               `user_id`	BIGINT	NOT NULL,
-                              `group_id`	BIGINT	NOT NULL,
+                              `community_id`	BIGINT	NOT NULL,
                               `role`	VARCHAR(20)	NULL,
     FOREIGN KEY (user_id) REFERENCES user(id),
-    FOREIGN KEY (group_id) REFERENCES `group`(id)
+    FOREIGN KEY (community_id) REFERENCES community(id)
 );
