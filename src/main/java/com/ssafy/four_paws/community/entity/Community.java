@@ -1,4 +1,4 @@
-package com.ssafy.four_paws.group.entity;
+package com.ssafy.four_paws.community.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,11 +12,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "group")
+@Table(name = "community")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Group {
+public class Community {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

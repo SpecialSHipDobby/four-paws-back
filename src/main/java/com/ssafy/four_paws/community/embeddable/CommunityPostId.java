@@ -1,4 +1,4 @@
-package com.ssafy.four_paws.group.embeddable;
+package com.ssafy.four_paws.community.embeddable;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserGroupId {
-    private Long userId;
-    private Long groupId;
+public class CommunityPostId {
+    private Long communityId;
+    private Long postId;
 }
