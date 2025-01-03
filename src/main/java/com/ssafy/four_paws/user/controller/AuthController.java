@@ -53,7 +53,7 @@ public class AuthController {
                     new UsernamePasswordAuthenticationToken(authRequest.getEmail(), authRequest.getPassword())
             );
         } catch (BadCredentialsException e) {
-            throw new CustomException("잘못된 이메일 또는 비밀번호 입니다.");
+            throw new CustomException("잘못된 이메일 또는 비밀번호 입니다.", HttpStatus.NOT_FOUND);
         }
 
         String token = jwtUtil.generateToken(authRequest.getEmail());

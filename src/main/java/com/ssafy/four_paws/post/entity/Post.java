@@ -1,26 +1,24 @@
 package com.ssafy.four_paws.post.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.ssafy.four_paws.care_zone.entity.CareZone;
 import com.ssafy.four_paws.user.entity.User;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.util.HashSet;
+import java.util.Set;
+
+import lombok.*;
 
 @Entity
 @Table(name = "post")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = "postPostPhoto") // 무한 재귀 방지
+@EqualsAndHashCode(exclude = "postPostPhoto") // 무한 재귀 방지
 public class Post {
 
     @Id
@@ -46,4 +44,7 @@ public class Post {
     @JoinColumn(name = "care_zone_id")
     private CareZone careZone;
 
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private Set<PostPostPhoto> postPostPhoto = new HashSet<>();
 }
