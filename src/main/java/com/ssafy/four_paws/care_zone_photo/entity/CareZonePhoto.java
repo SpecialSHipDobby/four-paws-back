@@ -1,7 +1,6 @@
-package com.ssafy.four_paws.comments.entity;
+package com.ssafy.four_paws.care_zone_photo.entity;
 
-import com.ssafy.four_paws.post.entity.Post;
-import com.ssafy.four_paws.user.entity.User;
+import com.ssafy.four_paws.care_zone.entity.CareZone;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -16,29 +15,22 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Entity
-@Table(name = "comments")
+@Table(name = "care_zone_photo")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Comments {
+public class CareZonePhoto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
     @Column(nullable = false)
-    private String content;
+    private String photoUrl;
     @Column
     private LocalDateTime createdAt;
-    @Column
-    private LocalDateTime updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "post_id", nullable = false)
-    private Post post;
-
+    @JoinColumn(name = "care_zone_id", nullable = false)
+    private CareZone careZone;
 }

@@ -31,9 +31,4 @@ public class PostPhoto {
     @OneToMany(mappedBy = "postPhoto", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private Set<PostPostPhoto> postPostPhoto = new HashSet<>();
-
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "post_id", nullable = false)
-//    @JsonManagedReference
-//    private Post post;
 }
