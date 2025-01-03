@@ -4,6 +4,7 @@ import com.ssafy.four_paws.exception.CustomException;
 import com.ssafy.four_paws.user.dto.UserDto;
 import com.ssafy.four_paws.user.entity.User;
 import com.ssafy.four_paws.user.repository.UserRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,7 @@ public class UserService {
     public User registerUser(UserDto userDto) {
         Optional<User> existingUser = userRepository.findByEmail(userDto.getEmail());
         if (existingUser.isPresent()) {
-            throw new CustomException("이미 존재하는 이메일입니다.");
+            throw new CustomException("이미 존재하는 이메일입니다.", HttpStatus.NOT_FOUND);
         }
 
         User user = new User();
